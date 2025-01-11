@@ -4,8 +4,8 @@ import UserModel, { Provider, User } from '../../models/users';
 import { GenericError, ResponseObject, setUserToSession } from '../../utils';
 import {
   AUTH_PROVIDERS,
-  BASIC_AUTH_ROUTE,
-  BASIC_ROUTE,
+  BASE_AUTH_ROUTE,
+  BASE_ROUTE,
   DEFAULT_USER_APP_NAME,
 } from '../../utils/constants';
 import { validateBasicAuthBody } from './validations';
@@ -18,7 +18,7 @@ const authService = {
         if (AUTH_PROVIDERS.includes(provider))
           return res.redirect(
             307,
-            `${BASIC_ROUTE}/${BASIC_AUTH_ROUTE}/${provider}/redirect`,
+            `${BASE_ROUTE}/${BASE_AUTH_ROUTE}/${provider}/redirect`,
           );
         const error: GenericError = new Error('Provider not available');
         error.status = 400;
@@ -33,10 +33,10 @@ const authService = {
     post: (req: Request, res: Response, next: NextFunction) => {
       try {
         const provider: Provider = req.query.provider as Provider;
-        if (AUTH_PROVIDERS.includes(provider))
+        if (AUTH_PROVIDERS.lastIndexOf(provider) === -1)
           return res.redirect(
             307,
-            `${BASIC_ROUTE}/${BASIC_AUTH_ROUTE}/login/${provider}/redirect`,
+            `${BASE_ROUTE}/${BASE_AUTH_ROUTE}/login/${provider}/redirect`,
           );
         const error: GenericError = new Error('Provider not available');
         error.status = 400;

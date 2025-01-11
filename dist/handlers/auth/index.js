@@ -19,7 +19,7 @@ const authService = {
             try {
                 const provider = req.query.provider;
                 if (constants_1.AUTH_PROVIDERS.includes(provider))
-                    return res.redirect(307, `${constants_1.BASIC_ROUTE}/${constants_1.BASIC_AUTH_ROUTE}/${provider}/redirect`);
+                    return res.redirect(307, `${constants_1.BASE_ROUTE}/${constants_1.BASE_AUTH_ROUTE}/${provider}/redirect`);
                 const error = new Error('Provider not available');
                 error.status = 400;
                 throw error;
@@ -34,8 +34,8 @@ const authService = {
         post: (req, res, next) => {
             try {
                 const provider = req.query.provider;
-                if (constants_1.AUTH_PROVIDERS.includes(provider))
-                    return res.redirect(307, `${constants_1.BASIC_ROUTE}/${constants_1.BASIC_AUTH_ROUTE}/login/${provider}/redirect`);
+                if (constants_1.AUTH_PROVIDERS.lastIndexOf(provider) === -1)
+                    return res.redirect(307, `${constants_1.BASE_ROUTE}/${constants_1.BASE_AUTH_ROUTE}/login/${provider}/redirect`);
                 const error = new Error('Provider not available');
                 error.status = 400;
                 throw error;

@@ -5,7 +5,7 @@ import { authMiddleware } from '../middlewares';
 import { UserSession } from '../models/dtos/UserSession';
 import { User } from '../models/users';
 import { AuthRouter, ReadyRouter } from '../routes';
-import { BASIC_READY_ROUTE, BASIC_ROUTE } from './constants';
+import { BASE_READY_ROUTE, BASE_ROUTE } from './constants';
 
 export class ResponseObject {
   private response: Response;
@@ -97,11 +97,11 @@ export const buildRoutes = (app: Express): void => {
   app.use(authMiddleware);
 
   /** Custom Routes */
-  app.use(BASIC_ROUTE, ReadyRouter);
-  app.use(BASIC_ROUTE, AuthRouter);
+  app.use(BASE_ROUTE, ReadyRouter);
+  app.use(BASE_ROUTE, AuthRouter);
 
   /** Default Route */
   app.get('/*', (req: Request, res: Response) => {
-    res.redirect(`${BASIC_ROUTE}${BASIC_READY_ROUTE}`);
+    res.redirect(`${BASE_ROUTE}${BASE_READY_ROUTE}`);
   });
 };

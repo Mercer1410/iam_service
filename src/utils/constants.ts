@@ -1,6 +1,6 @@
-export const BASIC_ROUTE = '/iam';
-export const BASIC_AUTH_ROUTE = '/auth';
-export const BASIC_READY_ROUTE = '/ready';
+export const BASE_ROUTE = '/iam';
+export const BASE_AUTH_ROUTE = '/auth';
+export const BASE_READY_ROUTE = '/ready';
 
 /** Provider type created in user model gets automatically updated when AUTH_PROVIDERS is updated */
 export const AUTH_PROVIDERS = ['basic', 'google'] as const;

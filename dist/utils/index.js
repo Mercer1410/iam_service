@@ -75,11 +75,11 @@ const buildRoutes = (app) => {
     /** Middlewares */
     app.use(middlewares_1.authMiddleware);
     /** Custom Routes */
-    app.use(constants_1.BASIC_ROUTE, routes_1.ReadyRouter);
-    app.use(constants_1.BASIC_ROUTE, routes_1.AuthRouter);
+    app.use(constants_1.BASE_ROUTE, routes_1.ReadyRouter);
+    app.use(constants_1.BASE_ROUTE, routes_1.AuthRouter);
     /** Default Route */
     app.get('/*', (req, res) => {
-        res.redirect(`${constants_1.BASIC_ROUTE}${constants_1.BASIC_READY_ROUTE}`);
+        res.redirect(`${constants_1.BASE_ROUTE}${constants_1.BASE_READY_ROUTE}`);
     });
 };
 exports.buildRoutes = buildRoutes;
